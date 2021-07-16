@@ -22,6 +22,5 @@ yarn-error.log*
 package-lock.json
 
 .env
-/uploads/*.jpg
 # Local Netlify folder
 .netlify
