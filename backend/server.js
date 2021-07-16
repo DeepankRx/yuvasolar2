@@ -1,5 +1,5 @@
-const server = require('http').createServer(); 
-const io = require('socket.io')(server);
+import http from 'http';
+import { Server } from 'socket.io';
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
