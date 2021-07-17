@@ -64,7 +64,7 @@ function App() {
             >
               <i className="fa fa-bars bars"></i>
             </button>
-            <Link className="brand" to="/">
+            <Link className="brand font12" to="/">
               YUVA SOLAR
             </Link>
           </div>

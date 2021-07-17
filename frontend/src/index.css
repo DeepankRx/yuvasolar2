@@ -56,6 +56,7 @@ h2 {
 
 a {
   text-decoration: none;
+  color: rgb(255, 136, 0);
 }
 a:hover {
   color: #ffffe0;
@@ -155,7 +156,7 @@ aside {
   position: fixed;
   width: 30rem;
   height: 100%;
-  background-color: #ffcd58;
+  background-color:#ffebe9;
   z-index: 1000;
   transform: translateX(-30rem);
   transition: all 0.5s;
@@ -242,7 +243,7 @@ ul.images button {
   color: #404040;
 }
 a>.rating>span:last-child {
-  color: #00f
+  color: rgb(255, 136, 0)
 }
 /* Alert */
 .loading {
@@ -310,6 +311,8 @@ a>.rating>span:last-child {
 }
 /* Checkout Steps */
 .checkout-steps > div {
+  display: subgrid;
+  font-size: 11.55px;
   border-top: 0.3rem #c0c0c0 solid;
   color: #c0c0c0;
   flex: 1 1;
@@ -749,3 +752,6 @@ a>.rating>span:last-child {
 .bars {
   color:#a02020;
   }
+.font12{
+  font-family:initial;
+}
