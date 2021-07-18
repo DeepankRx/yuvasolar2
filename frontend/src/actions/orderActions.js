@@ -24,6 +24,9 @@ import {
   ORDER_DELIVER_FAIL,
   ORDER_SUMMARY_REQUEST,
   ORDER_SUMMARY_SUCCESS,
+  ORDER_PAID_REQUEST,
+  ORDER_PAID_SUCCESS,
+  ORDER_PAID_FAIL,
 } from '../constants/orderConstants';
 
 export const createOrder = (order) => async (dispatch, getState) => {
@@ -171,7 +174,6 @@ export const deliverOrder = (orderId) => async (dispatch, getState) => {
     dispatch({ type: ORDER_DELIVER_FAIL, payload: message });
   }
 };
-
 export const summaryOrder = () => async (dispatch, getState) => {
   dispatch({ type: ORDER_SUMMARY_REQUEST });
   const {
@@ -190,5 +192,66 @@ export const summaryOrder = () => async (dispatch, getState) => {
           ? error.response.data.message
           : error.message,
     });
+  }
+};
+export const deliverPaid = (orderId) => async (dispatch, getState) => {
+  dispatch({ type: ORDER_PAID_REQUEST, payload: orderId });
+  const {
+    userSignin: { userInfo },
+  } = getState();
+  try {
+    const { data } = Axios.put(
+      `/api/orders/${orderId}/paid`,
+      {},
+      {
+        headers: { Authorization: `Bearer ${userInfo.token}` },
+      }
+    );
+    dispatch({ type: ORDER_PAID_SUCCESS, payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: ORDER_PAID_FAIL, payload: message });
+  }
+};
+export const detailsPaid = (orderId) => async (dispatch, getState) => {
+  dispatch({ type: ORDER_PAID_REQUEST, payload: orderId });
+  const {
+    userSignin: { userInfo },
+  } = getState();
+  try {
+    const { data } = await Axios.get(`/api/orders/${orderId}`, {
+      headers: { Authorization: `Bearer ${userInfo.token}` },
+    });
+    dispatch({ type: ORDER_PAID_SUCCESS, payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: ORDER_PAID_FAIL, payload: message });
+  }
+};
+export const payPaid = (order, paymentResult) => async (
+  dispatch,
+  getState
+) => {
+  dispatch({ type: ORDER_PAID_REQUEST, payload: { order, paymentResult } });
+  const {
+    userSignin: { userInfo },
+  } = getState();
+  try {
+    const { data } = Axios.put(`/api/orders/${order._id}/pay`, paymentResult, {
+      headers: { Authorization: `Bearer ${userInfo.token}` },
+    });
+    dispatch({ type: ORDER_PAID_SUCCESS, payload: data });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: ORDER_PAID_FAIL, payload: message });
   }
 };

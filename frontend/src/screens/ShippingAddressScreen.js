@@ -20,6 +20,7 @@ export default function ShippingAddressScreen(props) {
   const [fullName, setFullName] = useState(shippingAddress.fullName);
   const [address, setAddress] = useState(shippingAddress.address);
   const [city, setCity] = useState(shippingAddress.city);
+  const [phone, setPhone] = useState(shippingAddress.phone);
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
   const [country, setCountry] = useState(shippingAddress.country);
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ export default function ShippingAddressScreen(props) {
           fullName,
           address,
           city,
+          phone,
           postalCode,
           country,
           lat: newLat,
@@ -53,6 +55,7 @@ export default function ShippingAddressScreen(props) {
         fullName,
         address,
         city,
+        phone,
         postalCode,
         country,
         lat,
@@ -98,6 +101,17 @@ export default function ShippingAddressScreen(props) {
             placeholder="Enter city"
             value={city}
             onChange={(e) => setCity(e.target.value)}
+            required
+          ></input>
+        </div>
+        <div>
+          <label htmlFor="phone">Phone Number</label>
+          <input
+            type="tel"
+            id="phone"
+            placeholder="Enter phone number"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
             required
           ></input>
         </div>

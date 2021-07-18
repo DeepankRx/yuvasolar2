@@ -199,6 +199,7 @@ img.small {
 img.medium {
   max-width: 29rem;
   width: 100%;
+  height: 354px;
 }
 img.large {
   width: 100%;

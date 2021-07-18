@@ -1,16 +1,18 @@
 import Axios from 'axios';
-import { PayPalButton } from 'react-paypal-button-v2';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { deliverOrder, detailsOrder, payOrder } from '../actions/orderActions';
+import { deliverOrder, detailsOrder } from '../actions/orderActions';
+import { deliverPaid, detailsPaid } from '../actions/orderActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import {
   ORDER_DELIVER_RESET,
   ORDER_PAY_RESET,
 } from '../constants/orderConstants';
-
+import {
+  ORDER_PAID_RESET,
+} from '../constants/orderConstants';
 export default function OrderScreen(props) {
   const orderId = props.match.params.id;
   const [sdkReady, setSdkReady] = useState(false);
@@ -21,10 +23,10 @@ export default function OrderScreen(props) {
 
   const orderPay = useSelector((state) => state.orderPay);
   const {
-    loading: loadingPay,
-    error: errorPay,
     success: successPay,
   } = orderPay;
+
+  
   const orderDeliver = useSelector((state) => state.orderDeliver);
   const {
     loading: loadingDeliver,
@@ -44,6 +46,9 @@ export default function OrderScreen(props) {
       };
       document.body.appendChild(script);
     };
+
+  
+
     if (
       !order ||
       successPay ||
@@ -63,14 +68,12 @@ export default function OrderScreen(props) {
       }
     }
   }, [dispatch, orderId, sdkReady, successPay, successDeliver, order]);
-
-  const successPaymentHandler = (paymentResult) => {
-    dispatch(payOrder(order, paymentResult));
-  };
   const deliverHandler = () => {
     dispatch(deliverOrder(order._id));
   };
-
+  const paidHandler = () => {
+    dispatch(deliverPaid(order._id));
+  };
   return loading ? (
     <LoadingBox></LoadingBox>
   ) : error ? (
@@ -89,7 +92,9 @@ export default function OrderScreen(props) {
                   <strong>Address: </strong> {order.shippingAddress.address},
                   {order.shippingAddress.city},{' '}
                   {order.shippingAddress.postalCode},
-                  {order.shippingAddress.country}
+                  {order.shippingAddress.country},<br/>
+                  <strong>Phone: </strong> {order.shippingAddress.phone}
+                  
                 </p>
                 {order.isDelivered ? (
                   <MessageBox variant="success">
@@ -181,7 +186,7 @@ export default function OrderScreen(props) {
                 </div>
               </li>
             
-              {userInfo.isAdmin && order.isPaid && !order.isDelivered && (
+              {userInfo.isAdmin && !order.isDelivered && (
                 <li>
                   {loadingDeliver && <LoadingBox></LoadingBox>}
                   {errorDeliver && (
@@ -193,6 +198,21 @@ export default function OrderScreen(props) {
                     onClick={deliverHandler}
                   >
                     Deliver Order
+                  </button>
+                </li>
+              )}
+               {userInfo.isAdmin && !order.isPaid && (
+                <li>
+                  {loadingDeliver && <LoadingBox></LoadingBox>}
+                  {errorDeliver && (
+                    <MessageBox variant="danger">{errorDeliver}</MessageBox>
+                  )}
+                  <button
+                    type="button"
+                    className="primary block"
+                    onClick={paidHandler}
+                  >
+                    Paid Order
                   </button>
                 </li>
               )}
