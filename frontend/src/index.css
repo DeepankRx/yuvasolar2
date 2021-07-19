@@ -761,3 +761,12 @@ a>.rating>span:last-child {
   font-size: 30px;
   color:#00b126;
 }
+.filter{
+    width: 266px;
+    border: 3px solid #ff5c4d;
+    padding: 26px;
+    margin: 3px;
+    box-shadow: rgb(50 50 93 / 25%) 0px 30px 60px -12px inset, rgb(0 0 0 / 30%) 0px 18px 36px -18px inset;
+    border-radius: 25px;
+    border-style:double;
+}
