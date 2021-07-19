@@ -59,7 +59,8 @@ a {
   color: rgb(255, 136, 0);
 }
 a:hover {
-  color: #ffffe0;
+  color: #0384c0;
+  -webkit-transform: scale(1.2);
 }
 ul {
   padding: 0;
@@ -755,4 +756,8 @@ a>.rating>span:last-child {
   }
 .font12{
   font-family:initial;
+}
+.fafa{
+  font-size: 30px;
+  color:#00b126;
 }

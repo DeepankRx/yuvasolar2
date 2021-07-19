@@ -185,7 +185,17 @@ export default function OrderScreen(props) {
                   </div>
                 </div>
               </li>
-            
+              <li>
+                <div className="row">
+                  <div>
+                    <button>
+               
+                  <a href="https://rzp.io/l/yK80ci1fTM">Online Payment</a>
+                  </button>
+                  </div>
+                  
+                </div>
+              </li>
               {userInfo.isAdmin && !order.isDelivered && (
                 <li>
                   {loadingDeliver && <LoadingBox></LoadingBox>}

@@ -170,6 +170,7 @@ function App() {
                   >
                     {c}
                   </Link>
+                  <i class="fa fa-arrow-right"></i>
                 </li>
               ))
             )}

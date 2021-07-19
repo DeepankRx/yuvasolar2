@@ -66,12 +66,12 @@ export default function ChatBox(props) {
     <div className="chatbox">
       {!isOpen ? (
         <button type="button" onClick={supportHandler}>
-          <i className="fa fa-support" />
+          <i className="fa fa-comments fafa" />
         </button>
       ) : (
         <div className="card card-body">
           <div className="row">
-            <strong>Support </strong>
+            <strong>Live Chat <i className="fa fa-user"></i> </strong>
             <button type="button" onClick={closeHandler}>
               <i className="fa fa-close" />
             </button>
