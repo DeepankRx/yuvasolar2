@@ -60,8 +60,22 @@ export default function SearchScreen(props) {
         ) : error ? (
           <MessageBox variant="danger">{error}</MessageBox>
         ) : (
-          <div>{products.length} Results</div>
+          <div>{products.length} Results<Link className={'all' === category ? 'active' : ''}
+          to={getFilterUrl({ category: 'all', min: 0, max: 0,rating:-1})}
+          
+        >
+             <button className="filterbutton">
+                  
+                    
+                    Reset Filter
+                 
+               </button> </Link>
+                </div>
+          
         )}
+        
+     
+        
         <div>
           Sort by{' '}
           <select
