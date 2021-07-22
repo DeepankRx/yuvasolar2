@@ -11,6 +11,7 @@ export default function ProductScreen(props) {
   const dispatch = useDispatch();
   const productId = props.match.params.id;
   const [qty, setQty] = useState(1);
+  const [selectedImage, setSelectedImage] = useState('');
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
   const userSignin = useSelector((state) => state.userSignin);
@@ -38,6 +39,9 @@ export default function ProductScreen(props) {
   const addToCartHandler = () => {
     props.history.push(`/cart/${productId}?qty=${qty}`);
   };
+  const changeImage = (image) => {
+    setSelectedImage(image);
+  };
   const submitHandler = (e) => {
     e.preventDefault();
     if (comment && rating) {
@@ -61,7 +65,7 @@ export default function ProductScreen(props) {
             <div className="col-2">
               <img
                 className="large"
-                src={product.image}
+                src={selectedImage || product.image}
                 alt={product.name}
               ></img>
             </div>
@@ -80,6 +84,22 @@ export default function ProductScreen(props) {
                 <li>
                   Description:
                   <p>{product.description}</p>
+                </li>
+                <li>
+                  Images:
+                  <ul className="images">
+                    {[product.image, ...product.images].map((x) => (
+                      <li key={x}>
+                        <button
+                          type="button"
+                          className="light"
+                          onClick={() => changeImage(x)}
+                        >
+                          <img src={x} alt="product" className="small" />
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
                 </li>
               </ul>
             </div>
