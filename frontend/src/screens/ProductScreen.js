@@ -92,10 +92,10 @@ export default function ProductScreen(props) {
                       <li key={x}>
                         <button
                           type="button"
-                          className="light"
+                          className="miniimagebutton"
                           onClick={() => changeImage(x)}
                         >
-                          <img src={x} alt="product" className="small" />
+                          <img src={x} alt="product" className="verysmall" />
                         </button>
                       </li>
                     ))}
