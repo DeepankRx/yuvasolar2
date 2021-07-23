@@ -62,7 +62,7 @@ export default function SearchScreen(props) {
           <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <div>{products.length} Results
-          <button className="button3" onClick={() => setShowText(!showText)}>Filter1</button><Link className={'all' === category ? 'active' : ''}
+          <button className="button3" onClick={() => setShowText(!showText)}>  Filter   </button><Link className={'all' === category ? 'active' : ''}
           to={getFilterUrl({ category: 'all', min: 0, max: 0,rating:-1})}
           
         > 
