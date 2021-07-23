@@ -6,7 +6,7 @@ export const prices = [
   },
   {
     name: `Rs.0 to Rs1000`,
-    min: 0,
+    min: 1,
     max: 1000,
   },
   {
@@ -20,9 +20,19 @@ export const prices = [
     max: 15000,
   },
   {
-    name: `>Rs.15000 `,
+    name: `Rs.15000 to Rs.20000 `,
     min: 15000,
-    max: 2000000,
+    max: 20000,
+  },
+  {
+    name: `Rs.20000 to Rs.25000 `,
+    min: 20000,
+    max: 25000,
+  },
+  {
+    name: `More Then Rs.25000`,
+    min: 25000,
+    max: 999999999,
   },
 ];
 export const ratings = [

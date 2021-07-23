@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
 import { listProducts } from '../actions/productActions';
@@ -18,6 +18,7 @@ export default function SearchScreen(props) {
     order = 'newest',
     pageNumber = 1,
   } = useParams();
+  const [showText, setShowText] = useState(false);
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
@@ -63,18 +64,19 @@ export default function SearchScreen(props) {
           <div>{products.length} Results<Link className={'all' === category ? 'active' : ''}
           to={getFilterUrl({ category: 'all', min: 0, max: 0,rating:-1})}
           
-        >
+        > <button className="button3" onClick={() => setShowText(!showText)}>Filter</button>
              <button className="filterbutton">
                   
                     
                     Reset Filter
                  
                </button> </Link>
+               
                 </div>
           
         )}
         
-     
+         
         
         <div>
           Sort by{' '}
@@ -92,6 +94,7 @@ export default function SearchScreen(props) {
         </div>
       </div>
       <div className="row top">
+        {showText && 
         <div className="col-1 filter">
           <h3>Department</h3>
           <div>
@@ -154,7 +157,7 @@ export default function SearchScreen(props) {
               ))}
             </ul>
           </div>
-        </div>
+        </div>}
         <div className="col-3">
           {loading ? (
             <LoadingBox></LoadingBox>

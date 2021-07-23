@@ -26,7 +26,6 @@ export default function ProductEditScreen(props) {
     error: errorUpdate,
     success: successUpdate,
   } = productUpdate;
-
   const dispatch = useDispatch();
   useEffect(() => {
     if (successUpdate) {
@@ -92,7 +91,9 @@ export default function ProductEditScreen(props) {
       setLoadingUpload(false);
     }
   };
-
+  const deleteImages =()=>{
+    setImages([]);
+  }
   return (
     <div>
       <form className="form" onSubmit={submitHandler}>
@@ -166,6 +167,8 @@ export default function ProductEditScreen(props) {
                   onChange={(e) => uploadFileHandler(e, true)}
                 />
               </div>
+              <br></br>
+              <button className="danger" onClick={() => deleteImages()}>Delete All Additional Images</button>
               {loadingUpload && <LoadingBox></LoadingBox>}
               {errorUpload && (
                 <MessageBox variant="danger">{errorUpload}</MessageBox>
