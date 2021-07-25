@@ -1,3 +1,5 @@
 {
-    "git.ignoreLimitWarning": true
+    "git.ignoreLimitWarning": true,
+    "appService.defaultWebAppToDeploy": "/subscriptions/e9a255a4-4438-4ce3-9232-7f388a506b46/resourceGroups/Os1_group/providers/Microsoft.Web/sites/yuvasolar",
+    "appService.deploySubpath": "."
 }

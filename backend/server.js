@@ -14,8 +14,8 @@ dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/amazona', {
+let URI = "mongodb+srv://yuvasolar:yuvasolarpassword@cluster0.wopim.mongodb.net/amazona?retryWrites=true&w=majority"
+mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/amazona' || URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,

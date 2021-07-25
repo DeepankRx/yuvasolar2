@@ -69,7 +69,7 @@ export default function SearchScreen(props) {
              <button className="filterbutton">
                   
                     
-                    Reset Filter123
+                    Reset Filter
                  
                </button> </Link>
                
