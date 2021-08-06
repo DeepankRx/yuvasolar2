@@ -1,5 +1,5 @@
 import http from 'http';
-import { Server, Socket } from 'socket.io';
+import { Server } from 'socket.io';
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
@@ -15,7 +15,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 let URI = "mongodb+srv://yuvasolar:yuvasolarpassword@cluster0.wopim.mongodb.net/amazona?retryWrites=true&w=majority"
-mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/amazona' || URI, {
+mongoose.connect(process.env.MONGODB_URL || URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,

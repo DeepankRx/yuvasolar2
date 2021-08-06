@@ -188,10 +188,10 @@ export default function OrderScreen(props) {
               <li>
                 <div className="row">
                   <div>
-                    <button>
-               
-                  <a href="https://rzp.io/l/yK80ci1fTM">Online Payment</a>
-                  </button>
+                   
+                  { order.paymentMethod === "Online Payment" ? <button><a href="https://rzp.io/l/yK80ci1fTM">Online Payment</a></button>: "" }
+                  
+                  
                   </div>
                   
                 </div>
